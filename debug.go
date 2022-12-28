@@ -7,7 +7,7 @@ import (
 func (g *Game) SetTestBoard(ft FigureType) FigureId {
 	var f *Figure = nil
 
-	fmt.Printf("\n## Test Board: %s\n", ft) // DEBUG
+	//fmt.Printf("\n## Test Board: %s\n", ft) // DEBUG
 	g.CleanBoard()
 
 	// Grab next available figure from pile
@@ -21,8 +21,10 @@ func (g *Game) SetTestBoard(ft FigureType) FigureId {
 	// Put figure in center of the board
 	g.PlaceFigure(4, 4, f.Id)
 
+/*
 	fmt.Printf("# %s\n", f) // DEBUG
 	g.Draw()                // DEBUG
+*/
 
 	return f.Id
 }
