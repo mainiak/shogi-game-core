@@ -103,6 +103,30 @@ func getKnightDirections(f *Figure) []Coordinates {
 	return targets
 }
 
+func getRookDirections(f *Figure) []Coordinates {
+	var targets []Coordinates
+
+	// UP
+	//newX := f.Position.X // same
+	for y := f.Position.Y + 1; y < BoardSize; y++ {
+		targets = append(targets, Coordinates{
+			X: f.Position.X,
+			Y: y,
+		})
+	}
+
+	// Down
+	//newX := f.Position.X // same
+	for y := f.Position.Y - 1; y >= 0; y-- {
+		targets = append(targets, Coordinates{
+			X: f.Position.X,
+			Y: y,
+		})
+	}
+
+	return targets
+}
+
 func GetFigureDirections(f *Figure) []Coordinates {
 	// TODO: ensure that directions are stopped on "collision"
 	// TODO: coordinates are opposite/inverted for different figure 'color'
@@ -116,6 +140,9 @@ func GetFigureDirections(f *Figure) []Coordinates {
 
 	case Knight:
 		return getKnightDirections(f)
+
+	case Rook:
+		return getRookDirections(f)
 
 	default:
 		return nil
