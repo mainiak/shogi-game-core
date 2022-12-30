@@ -122,6 +122,32 @@ func getRookDirections(f *Figure) []Coordinates {
 			X: f.Position.X,
 			Y: y,
 		})
+
+		if y == 0 {
+			break
+		}
+	}
+
+	// Left
+	//newY := f.Position.Y // same
+	for x := f.Position.X - 1; x >= 0; x-- {
+		targets = append(targets, Coordinates{
+			X: x,
+			Y: f.Position.Y,
+		})
+
+		if x == 0 {
+			break
+		}
+	}
+
+	// Right
+	//newY := f.Position.Y // same
+	for x := f.Position.X + 1; x < BoardSize; x++ {
+		targets = append(targets, Coordinates{
+			X: x,
+			Y: f.Position.Y,
+		})
 	}
 
 	return targets
