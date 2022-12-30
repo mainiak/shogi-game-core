@@ -1,4 +1,4 @@
-module github.com/mainiak/shogi-game-core/v1
+module github.com/mainiak/shogi-game-core
 
 go 1.19
 
