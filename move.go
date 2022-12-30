@@ -5,17 +5,6 @@ import (
 	"fmt"
 )
 
-const (
-	MovePawn          Direction = North
-	MoveLance         Direction = North
-	MoveKnight        Direction = NorthEast | NorthWest // Kinda
-	MoveRook          Direction = North | East | South | West
-	MoveBishop        Direction = NorthEast | SouthEast | SouthWest | NorthWest
-	MoveSilverGeneral Direction = North | NorthEast | SouthEast | SouthWest | NorthWest
-	MoveGoldenGeneral Direction = North | NorthEast | East | South | West | NorthWest
-	MoveKing          Direction = North | NorthEast | East | SouthEast | South | SouthWest | West | NorthWest
-)
-
 type Axis uint8
 
 const (
@@ -53,36 +42,6 @@ func (m *Move) String() string {
 		m.To.X,
 		m.To.Y,
 	)
-}
-
-func FigureDirections(ft FigureType) Direction {
-	switch ft {
-
-	case Pawn:
-		return MovePawn
-
-	case Lance:
-		return MoveLance
-
-	case Knight:
-		return MoveKnight
-
-	case Rook:
-		return MoveRook
-
-	case Bishop:
-		return MoveBishop
-
-	case SilverGeneral:
-		return MoveSilverGeneral
-
-	case GoldenGeneral:
-		return MoveGoldenGeneral
-
-	case King:
-		return MoveKing
-	}
-	return NOPE
 }
 
 func getPawnDirections(f *Figure) []Coordinates {
@@ -146,18 +105,19 @@ func getKnightDirections(f *Figure) []Coordinates {
 
 func GetFigureDirections(f *Figure) []Coordinates {
 	// TODO: ensure that directions are stopped on "collision"
+	// TODO: coordinates are opposite/inverted for different figure 'color'
 
-	if f.Type == Pawn {
+	switch f.Type {
+	case Pawn:
 		return getPawnDirections(f)
-	}
 
-	if f.Type == Lance {
+	case Lance:
 		return getLanceDirections(f)
-	}
 
-	if f.Type == Knight {
+	case Knight:
 		return getKnightDirections(f)
-	}
 
-	return nil
+	default:
+		return nil
+	}
 }

@@ -9,7 +9,7 @@ import (
  * Test suite
  */
 
-var _ = Describe("Game", func() {
+var _ = Describe("Game v1", func() {
 	var g *Game
 
 	BeforeEach(func() {

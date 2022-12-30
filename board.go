@@ -53,12 +53,10 @@ func (g *Game) GetFigure(x, y Axis) (*Figure, error) {
 	if err = validateRange(x); errors.Is(err, ErrAxisOutOfRange) {
 		panic(err)
 	}
-	//fmt.Printf("!1 %s\n ", err)
 
 	if err = validateRange(y); errors.Is(err, ErrAxisOutOfRange) {
 		panic(err)
 	}
-	//fmt.Printf("!2 %s\n ", err)
 
 	figureId := g.Board[x][y]
 
