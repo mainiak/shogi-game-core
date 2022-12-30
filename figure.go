@@ -15,7 +15,39 @@ const (
 	SilverGeneral                       //FigureType
 	GoldenGeneral                       //FigureType
 	King                                //FigureType
+	FigureTypeERR                       //FigureType
 )
+
+func StringToFigureType(typeName string) FigureType {
+	switch typeName {
+	case "pawn":
+		return Pawn
+
+	case "lance":
+		return Lance
+
+	case "knight":
+		return Knight
+
+	case "rook":
+		return Rook
+
+	case "bishop":
+		return Bishop
+
+	case "silver-general":
+		return SilverGeneral
+
+	case "golden-general":
+		return GoldenGeneral
+
+	case "king":
+		return King
+
+	default:
+		return FigureTypeERR
+	}
+}
 
 func (ft FigureType) String() string {
 	return fmt.Sprintf("%s | %s | %s", ft.NameShort(), ft.NameKanji(), ft.NameEn())
