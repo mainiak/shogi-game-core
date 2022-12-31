@@ -44,11 +44,16 @@ func (m *Move) String() string {
 	)
 }
 
-func getPawnDirections(f *Figure) []Coordinates {
+func getPawnDirections(f *Figure, inverted bool) []Coordinates {
+	var newY Axis
 	var targets []Coordinates
 
 	//newX := f.Position.X // same
-	newY := f.Position.Y + 1
+	if inverted {
+		newY = f.Position.Y - 1
+	} else {
+		newY = f.Position.Y + 1
+	}
 
 	if err := validateRange(newY); errors.Is(err, ErrAxisOutOfRange) {
 		return nil // no new possible coordinates to move
@@ -62,27 +67,45 @@ func getPawnDirections(f *Figure) []Coordinates {
 	return targets
 }
 
-func getLanceDirections(f *Figure) []Coordinates {
+func getLanceDirections(f *Figure, inverted bool) []Coordinates {
+	var newY Axis
 	var targets []Coordinates
 
 	//newX := f.Position.X // same
-	for y := f.Position.Y + 1; y < BoardSize; y++ {
-		targets = append(targets, Coordinates{
-			X: f.Position.X,
-			Y: y,
-		})
+	if inverted {
+		for newY = f.Position.Y - 1; newY >= 0; newY-- {
+			targets = append(targets, Coordinates{
+				X: f.Position.X,
+				Y: newY,
+			})
+
+			if newY == 0 {
+				break
+			}
+		}
+	} else {
+		for newY = f.Position.Y + 1; newY < BoardSize; newY++ {
+			targets = append(targets, Coordinates{
+				X: f.Position.X,
+				Y: newY,
+			})
+		}
 	}
 
 	return targets
 }
 
-func getKnightDirections(f *Figure) []Coordinates {
+func getKnightDirections(f *Figure, inverted bool) []Coordinates {
 	var targets []Coordinates
 	var newX, newY Axis
 
 	// Left "L"
 	newX = f.Position.X - 1
-	newY = f.Position.Y + 2
+	if inverted {
+		newY = f.Position.Y - 2
+	} else {
+		newY = f.Position.Y + 2
+	}
 	if validateRange(newX) == nil && validateRange(newY) == nil {
 		targets = append(targets, Coordinates{
 			X: newX,
@@ -92,7 +115,11 @@ func getKnightDirections(f *Figure) []Coordinates {
 
 	// Right "L"
 	newX = f.Position.X + 1
-	newY = f.Position.Y + 2
+	if inverted {
+		newY = f.Position.Y - 2
+	} else {
+		newY = f.Position.Y + 2
+	}
 	if validateRange(newX) == nil && validateRange(newY) == nil {
 		targets = append(targets, Coordinates{
 			X: newX,
@@ -208,7 +235,7 @@ func getBishopDirections(f *Figure) []Coordinates {
 	return targets
 }
 
-func getSilverGeneralDirections(f *Figure) []Coordinates {
+func getSilverGeneralDirections(f *Figure, inverted bool) []Coordinates {
 	var targets []Coordinates
 	var newX, newY Axis
 
@@ -265,7 +292,7 @@ func getSilverGeneralDirections(f *Figure) []Coordinates {
 	return targets
 }
 
-func getGoldenGeneralDirections(f *Figure) []Coordinates {
+func getGoldenGeneralDirections(f *Figure, inverted bool) []Coordinates {
 	var targets []Coordinates
 	var newX, newY Axis
 
@@ -419,19 +446,19 @@ func getKingDirections(f *Figure) []Coordinates {
 	return targets
 }
 
-func GetFigureDirections(f *Figure) []Coordinates {
+func GetFigureDirections(f *Figure, inverted bool) []Coordinates {
 	// TODO: ensure that directions are stopped on "collision"
 	// TODO: coordinates are opposite/inverted for different figure 'color'
 
 	switch f.Type {
 	case Pawn:
-		return getPawnDirections(f)
+		return getPawnDirections(f, inverted)
 
 	case Lance:
-		return getLanceDirections(f)
+		return getLanceDirections(f, inverted)
 
 	case Knight:
-		return getKnightDirections(f)
+		return getKnightDirections(f, inverted)
 
 	case Rook:
 		return getRookDirections(f)
@@ -440,10 +467,10 @@ func GetFigureDirections(f *Figure) []Coordinates {
 		return getBishopDirections(f)
 
 	case SilverGeneral:
-		return getSilverGeneralDirections(f)
+		return getSilverGeneralDirections(f, inverted)
 
 	case GoldenGeneral:
-		return getGoldenGeneralDirections(f)
+		return getGoldenGeneralDirections(f, inverted)
 
 	case King:
 		return getKingDirections(f)
