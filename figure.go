@@ -7,15 +7,15 @@ import (
 type FigureType uint8
 
 const (
-	Pawn          FigureType = iota + 1 // start with 1, not 0
-	Lance                               //FigureType
-	Knight                              //FigureType
-	Rook                                //FigureType
-	Bishop                              //FigureType
-	SilverGeneral                       //FigureType
-	GoldenGeneral                       //FigureType
-	King                                //FigureType
-	FigureTypeERR                       //FigureType
+	FigureTypeERR FigureType = iota // start with 0
+	Pawn                            //FigureType
+	Lance                           //FigureType
+	Knight                          //FigureType
+	Rook                            //FigureType
+	Bishop                          //FigureType
+	SilverGeneral                   //FigureType
+	GoldenGeneral                   //FigureType
+	King                            //FigureType
 )
 
 func StringToFigureType(typeName string) FigureType {
@@ -163,9 +163,22 @@ func (fId FigureId) String() string {
 type FigureOwner uint8
 
 const (
-	White FigureOwner = 1
-	Black FigureOwner = 2
+	FigureOwnerERR FigureOwner = 0
+	White          FigureOwner = 1
+	Black          FigureOwner = 2
 )
+
+func StringToColor(color string) FigureOwner {
+	switch color {
+	case "white":
+		return White
+
+	case "black":
+		return Black
+	}
+
+	return FigureOwnerERR // default
+}
 
 func (fo FigureOwner) String() string {
 	if fo == White {
