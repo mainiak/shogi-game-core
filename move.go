@@ -153,6 +153,93 @@ func getRookDirections(f *Figure) []Coordinates {
 	return targets
 }
 
+func getKingDirections(f *Figure) []Coordinates {
+	var targets []Coordinates
+	var newX, newY Axis
+
+	// UP
+	newX = f.Position.X
+	newY = f.Position.Y + 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// UP Right
+	newX = f.Position.X + 1
+	newY = f.Position.Y + 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// Right
+	newX = f.Position.X + 1
+	newY = f.Position.Y
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// Down Right
+	newX = f.Position.X + 1
+	newY = f.Position.Y - 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// Down
+	newX = f.Position.X
+	newY = f.Position.Y - 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// Down Left
+	newX = f.Position.X - 1
+	newY = f.Position.Y - 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// Left
+	newX = f.Position.X - 1
+	newY = f.Position.Y
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// UP Left
+	newX = f.Position.X - 1
+	newY = f.Position.Y + 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	return targets
+}
+
 func GetFigureDirections(f *Figure) []Coordinates {
 	// TODO: ensure that directions are stopped on "collision"
 	// TODO: coordinates are opposite/inverted for different figure 'color'
@@ -169,6 +256,9 @@ func GetFigureDirections(f *Figure) []Coordinates {
 
 	case Rook:
 		return getRookDirections(f)
+
+	case King:
+		return getKingDirections(f)
 
 	default:
 		return nil
