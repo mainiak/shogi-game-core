@@ -321,13 +321,15 @@ func getGoldenGeneralDirections(f *Figure, inverted bool) []Coordinates {
 	}
 
 	// UP Right
-	newX = f.Position.X + 1
-	newY = f.Position.Y + 1
-	if validateRange(newX) == nil && validateRange(newY) == nil {
-		targets = append(targets, Coordinates{
-			X: newX,
-			Y: newY,
-		})
+	if inverted == false {
+		newX = f.Position.X + 1
+		newY = f.Position.Y + 1
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
 	}
 
 	// Right
@@ -340,6 +342,18 @@ func getGoldenGeneralDirections(f *Figure, inverted bool) []Coordinates {
 		})
 	}
 
+	// Down Right
+	if inverted {
+		newX = f.Position.X + 1
+		newY = f.Position.Y - 1
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
+	}
+
 	// Down
 	newX = f.Position.X
 	newY = f.Position.Y - 1
@@ -348,6 +362,18 @@ func getGoldenGeneralDirections(f *Figure, inverted bool) []Coordinates {
 			X: newX,
 			Y: newY,
 		})
+	}
+
+	// Down Left
+	if inverted {
+		newX = f.Position.X - 1
+		newY = f.Position.Y - 1
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
 	}
 
 	// Left
@@ -361,13 +387,15 @@ func getGoldenGeneralDirections(f *Figure, inverted bool) []Coordinates {
 	}
 
 	// UP Left
-	newX = f.Position.X - 1
-	newY = f.Position.Y + 1
-	if validateRange(newX) == nil && validateRange(newY) == nil {
-		targets = append(targets, Coordinates{
-			X: newX,
-			Y: newY,
-		})
+	if inverted == false {
+		newX = f.Position.X - 1
+		newY = f.Position.Y + 1
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
 	}
 
 	return targets
