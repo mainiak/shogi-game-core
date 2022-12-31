@@ -208,6 +208,63 @@ func getBishopDirections(f *Figure) []Coordinates {
 	return targets
 }
 
+func getSilverGeneralDirections(f *Figure) []Coordinates {
+	var targets []Coordinates
+	var newX, newY Axis
+
+	// UP
+	newX = f.Position.X
+	newY = f.Position.Y + 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// UP Right
+	newX = f.Position.X + 1
+	newY = f.Position.Y + 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// Down Right
+	newX = f.Position.X + 1
+	newY = f.Position.Y - 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// Down Left
+	newX = f.Position.X - 1
+	newY = f.Position.Y - 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	// UP Left
+	newX = f.Position.X - 1
+	newY = f.Position.Y + 1
+	if validateRange(newX) == nil && validateRange(newY) == nil {
+		targets = append(targets, Coordinates{
+			X: newX,
+			Y: newY,
+		})
+	}
+
+	return targets
+}
+
 func getKingDirections(f *Figure) []Coordinates {
 	var targets []Coordinates
 	var newX, newY Axis
@@ -314,6 +371,9 @@ func GetFigureDirections(f *Figure) []Coordinates {
 
 	case Bishop:
 		return getBishopDirections(f)
+
+	case SilverGeneral:
+		return getSilverGeneralDirections(f)
 
 	case King:
 		return getKingDirections(f)
