@@ -153,6 +153,61 @@ func getRookDirections(f *Figure) []Coordinates {
 	return targets
 }
 
+func getBishopDirections(f *Figure) []Coordinates {
+	var i, newX, newY Axis
+	var targets []Coordinates
+
+	// UP Right
+	for i = 0; i < BoardSize; i++ {
+		newX = f.Position.X + i
+		newY = f.Position.Y + i
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
+	}
+
+	// Down Right
+	for i = 0; i < BoardSize; i++ {
+		newX = f.Position.X + i
+		newY = f.Position.Y - i
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
+	}
+
+	// Down Left
+	for i = 0; i < BoardSize; i++ {
+		newX = f.Position.X - i
+		newY = f.Position.Y - i
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
+	}
+
+	// UP Left
+	for i = 0; i < BoardSize; i++ {
+		newX = f.Position.X - i
+		newY = f.Position.Y + i
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
+	}
+
+	return targets
+}
+
 func getKingDirections(f *Figure) []Coordinates {
 	var targets []Coordinates
 	var newX, newY Axis
@@ -256,6 +311,9 @@ func GetFigureDirections(f *Figure) []Coordinates {
 
 	case Rook:
 		return getRookDirections(f)
+
+	case Bishop:
+		return getBishopDirections(f)
 
 	case King:
 		return getKingDirections(f)
