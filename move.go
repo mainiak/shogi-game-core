@@ -185,7 +185,7 @@ func getBishopDirections(f *Figure) []Coordinates {
 	var targets []Coordinates
 
 	// UP Right
-	for i = 0; i < BoardSize; i++ {
+	for i = 1; i < BoardSize; i++ {
 		newX = f.Position.X + i
 		newY = f.Position.Y + i
 		if validateRange(newX) == nil && validateRange(newY) == nil {
@@ -197,7 +197,7 @@ func getBishopDirections(f *Figure) []Coordinates {
 	}
 
 	// Down Right
-	for i = 0; i < BoardSize; i++ {
+	for i = 1; i < BoardSize; i++ {
 		newX = f.Position.X + i
 		newY = f.Position.Y - i
 		if validateRange(newX) == nil && validateRange(newY) == nil {
@@ -209,7 +209,7 @@ func getBishopDirections(f *Figure) []Coordinates {
 	}
 
 	// Down Left
-	for i = 0; i < BoardSize; i++ {
+	for i = 1; i < BoardSize; i++ {
 		newX = f.Position.X - i
 		newY = f.Position.Y - i
 		if validateRange(newX) == nil && validateRange(newY) == nil {
@@ -221,7 +221,7 @@ func getBishopDirections(f *Figure) []Coordinates {
 	}
 
 	// UP Left
-	for i = 0; i < BoardSize; i++ {
+	for i = 1; i < BoardSize; i++ {
 		newX = f.Position.X - i
 		newY = f.Position.Y + i
 		if validateRange(newX) == nil && validateRange(newY) == nil {
