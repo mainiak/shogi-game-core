@@ -240,13 +240,15 @@ func getSilverGeneralDirections(f *Figure, inverted bool) []Coordinates {
 	var newX, newY Axis
 
 	// UP
-	newX = f.Position.X
-	newY = f.Position.Y + 1
-	if validateRange(newX) == nil && validateRange(newY) == nil {
-		targets = append(targets, Coordinates{
-			X: newX,
-			Y: newY,
-		})
+	if inverted == false {
+		newX = f.Position.X
+		newY = f.Position.Y + 1
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
 	}
 
 	// UP Right
@@ -267,6 +269,18 @@ func getSilverGeneralDirections(f *Figure, inverted bool) []Coordinates {
 			X: newX,
 			Y: newY,
 		})
+	}
+
+	// Down
+	if inverted {
+		newX = f.Position.X
+		newY = f.Position.Y - 1
+		if validateRange(newX) == nil && validateRange(newY) == nil {
+			targets = append(targets, Coordinates{
+				X: newX,
+				Y: newY,
+			})
+		}
 	}
 
 	// Down Left
