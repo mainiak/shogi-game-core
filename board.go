@@ -87,57 +87,7 @@ func (g *Game) initFigures() {
 	// create all figures
 	var figureId FigureId = 0
 
-	// White Pawn front
-	for x := 0; x < BoardSize; x++ {
-		g.createFigure(figureId, White, Pawn)
-		figureId++
-	}
-
-	// White Bishop
-	g.createFigure(figureId, White, Bishop)
-	figureId++
-
-	// White Rook
-	g.createFigure(figureId, White, Rook)
-	figureId++
-
-	// L N S G K G S N L
-
-	// White Lance
-	g.createFigure(figureId, White, Lance)
-	figureId++
-
-	// White Knight
-	g.createFigure(figureId, White, Knight)
-	figureId++
-
-	// White Silver General
-	g.createFigure(figureId, White, SilverGeneral)
-	figureId++
-
-	// White Golden General
-	g.createFigure(figureId, White, GoldenGeneral)
-	figureId++
-
-	// White King
-	g.createFigure(figureId, White, King)
-	figureId++
-
-	// White Golden General
-	g.createFigure(figureId, White, GoldenGeneral)
-	figureId++
-
-	// White Silver General
-	g.createFigure(figureId, White, SilverGeneral)
-	figureId++
-
-	// White Knight
-	g.createFigure(figureId, White, Knight)
-	figureId++
-
-	// White Lance
-	g.createFigure(figureId, White, Lance)
-	figureId++
+	// Black (at bottom) moves first.
 
 	// Black Pawn front
 	for x := 0; x < BoardSize; x++ {
@@ -145,12 +95,12 @@ func (g *Game) initFigures() {
 		figureId++
 	}
 
-	// Black Rook
-	g.createFigure(figureId, Black, Rook)
-	figureId++
-
 	// Black Bishop
 	g.createFigure(figureId, Black, Bishop)
+	figureId++
+
+	// Black Rook
+	g.createFigure(figureId, Black, Rook)
 	figureId++
 
 	// L N S G K G S N L
@@ -190,6 +140,58 @@ func (g *Game) initFigures() {
 	// Black Lance
 	g.createFigure(figureId, Black, Lance)
 	figureId++
+
+	// White Pawn front
+	for x := 0; x < BoardSize; x++ {
+		g.createFigure(figureId, White, Pawn)
+		figureId++
+	}
+
+	// White Rook
+	g.createFigure(figureId, White, Rook)
+	figureId++
+
+	// White Bishop
+	g.createFigure(figureId, White, Bishop)
+	figureId++
+
+	// L N S G K G S N L
+
+	// White Lance
+	g.createFigure(figureId, White, Lance)
+	figureId++
+
+	// White Knight
+	g.createFigure(figureId, White, Knight)
+	figureId++
+
+	// White Silver General
+	g.createFigure(figureId, White, SilverGeneral)
+	figureId++
+
+	// White Golden General
+	g.createFigure(figureId, White, GoldenGeneral)
+	figureId++
+
+	// White King
+	g.createFigure(figureId, White, King)
+	figureId++
+
+	// White Golden General
+	g.createFigure(figureId, White, GoldenGeneral)
+	figureId++
+
+	// White Silver General
+	g.createFigure(figureId, White, SilverGeneral)
+	figureId++
+
+	// White Knight
+	g.createFigure(figureId, White, Knight)
+	figureId++
+
+	// White Lance
+	g.createFigure(figureId, White, Lance)
+	figureId++
 }
 
 func (g *Game) SetDefaultBoard() {
@@ -202,129 +204,129 @@ func (g *Game) SetDefaultBoard() {
 	figureId = 0
 	x, y = 0, 2
 
-	// White Pawn front
+	// Black Pawn front
 	for ; x < BoardSize; x++ {
 		g.PlaceFigure(x, y, figureId)
 		figureId++
 	}
 
-	// White Bishop
+	// Black Bishop
 	x, y = 1, 1
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// White Rook
+	// Black Rook
 	x, y = 7, 1
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
 	// L N S G K G S N L
 
-	// White Lance
+	// Black Lance
 	x, y = 0, 0
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// White Knight
+	// Black Knight
 	x, y = 1, 0
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// White Silver General
+	// Black Silver General
 	x, y = 2, 0
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// White Golden General
+	// Black Golden General
 	x, y = 3, 0
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// White King
+	// Black King
 	x, y = 4, 0
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// White Golden General
+	// Black Golden General
 	x, y = 5, 0
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// White Silver General
+	// Black Silver General
 	x, y = 6, 0
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// White Knight
+	// Black Knight
 	x, y = 7, 0
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// White Lance
+	// Black Lance
 	x, y = 8, 0
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black Pawn front
+	// White Pawn front
 	x, y = 0, 6
 	for ; x < BoardSize; x++ {
 		g.PlaceFigure(x, y, figureId)
 		figureId++
 	}
 
-	// Black Rook
+	// White Rook
 	x, y = 1, 7
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black Bishop
+	// White Bishop
 	x, y = 7, 7
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
 	// L N S G K G S N L
 
-	// Black Lance
+	// White Lance
 	x, y = 0, 8
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black Knight
+	// White Knight
 	x, y = 1, 8
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black Silver General
+	// White Silver General
 	x, y = 2, 8
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black Golden General
+	// White Golden General
 	x, y = 3, 8
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black King
+	// White King
 	x, y = 4, 8
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black Golden General
+	// White Golden General
 	x, y = 5, 8
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black Silver General
+	// White Silver General
 	x, y = 6, 8
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black Knight
+	// White Knight
 	x, y = 7, 8
 	g.PlaceFigure(x, y, figureId)
 	figureId++
 
-	// Black Lance
+	// White Lance
 	x, y = 8, 8
 	g.PlaceFigure(x, y, figureId)
 	figureId++
