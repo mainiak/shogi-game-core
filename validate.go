@@ -14,7 +14,8 @@ func validateRange(v Axis) error {
 
 func validateDirection(f *Figure, m *Move) error {
 	match := false
-	possibleMoves := GetFigureDirections(f)
+	inverted := false // FIXME
+	possibleMoves := GetFigureDirections(f, inverted)
 
 	for _, target := range possibleMoves {
 		if target.X == m.To.X && target.Y == m.To.Y {
