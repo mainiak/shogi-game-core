@@ -44,8 +44,7 @@ jobs:
         run: go build .
         #run: go build -o build/ -v ./...
 
-      #- run: ls ${{ github.workspace }}
-      - run: ls ${{ github.workspace }}/build
+      - run: ls ${{ github.workspace }}
 
       - name: Go Test
         run: go test .
