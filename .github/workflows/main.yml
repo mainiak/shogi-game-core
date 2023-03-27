@@ -64,6 +64,7 @@ jobs:
         run: ginkgo -vv .
       #  run: ginkgo -vv ./...
 
-      - name: Job statu
-        run: echo "job.status: ${{ job.status }}"
+      - name: Job status
+        run: |
+          echo "job.status: ${{ job.status }}"
         if: ${{ always() }}
