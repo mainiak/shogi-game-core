@@ -41,13 +41,15 @@ jobs:
       #    go install github.com/onsi/ginkgo/v2/ginkgo || true
 
       - name: Build apps
-        run: go build -o build/ -v ./...
+        run: go build .
+        #run: go build -o build/ -v ./...
 
       #- run: ls ${{ github.workspace }}
       - run: ls ${{ github.workspace }}/build
 
       - name: Go Test
-        run: go test -v ./...
+        run: go test .
+        #run: go test -v ./...
 
       #- name: Test with Go
       #  run: go test -json > TestResults-${{ matrix.go-version }}.json
@@ -58,7 +60,8 @@ jobs:
       #    name: Go-results-${{ matrix.go-version }}
       #    path: TestResults-${{ matrix.go-version }}.json
 
-      #- name: Ginkgo Test
+      - name: Ginkgo Test
+        run: ginkgo -vv .
       #  run: ginkgo -vv ./...
 
       #- run: |
