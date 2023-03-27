@@ -36,9 +36,10 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-      #- name: Install Ginkgo test framework
-      #  run: |
-      #    go install github.com/onsi/ginkgo/v2/ginkgo || true
+      - name: Install Ginkgo test framework
+        run: |
+          go get github.com/onsi/ginkgo/v2
+          go install github.com/onsi/ginkgo/v2/ginkgo
 
       - name: Build apps
         run: go build .
@@ -63,5 +64,6 @@ jobs:
         run: ginkgo -vv .
       #  run: ginkgo -vv ./...
 
-      #- run: |
-      #  echo "job.status: ${{ job.status }}"
+      - name: Job statu
+        run: echo "job.status: ${{ job.status }}"
+        if: ${{ always() }}
