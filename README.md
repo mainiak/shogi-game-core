@@ -10,7 +10,7 @@ This is a game core logic library for board game Shogi
 
 ```
 import (
-    game "github.com/mainiak/shogi-game-core"
+    game "github.com/mainiak/shogi-game-core/v1"
 )
 
 func main() {
