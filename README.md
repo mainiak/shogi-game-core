@@ -1,15 +1,38 @@
 # shogi-game-core
 
+![build status](https://github.com/mainiak/shogi-game-core/actions/workflows/main.yml/badge.svg?event=push) - [click here for more details](https://github.com/mainiak/shogi-game-core/actions/workflows/main.yml)
+
 ## About
 
-This is a library
+This is a game core logic library for board game Shogi
+
+## Usage
+
+```
+import (
+    game "github.com/mainiak/shogi-game-core"
+)
+
+func main() {
+    g := game.NewGame()
+    g.SetDefaultBoard() // required
+}
+```
+
+## Build
+
+```
+git clone git@github.com:mainiak/shogi-game-core.git
+cd shogi-game-core
+go build .
+```
 
 ## Testing
 
 ### Basic
 
 ```
-go test
+go test .
 ```
 
 ### More verbose
@@ -17,6 +40,9 @@ go test
 Install from https://onsi.github.io/ginkgo/
 
 ```
+go get github.com/onsi/ginkgo/v2
+go install github.com/onsi/ginkgo/v2/ginkgo
+
 ginkgo -vv ./...
 ```
 
